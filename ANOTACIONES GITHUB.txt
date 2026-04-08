@@ -1,0 +1,12 @@
+ANOTACIONES GITHUB
+
+- Crear el repositorio en GitHub.
+- Crear la carpeta localmente.
+- Abriri linea de comandos y ejecutar git clone https://github.com/usuario/repo.git (cambiar por el url del repositorio creado).
+- Avanzar a la carpeta del repositorio.
+- Crear la rama develop para no hacer cambios directo en main --> git checkout -b develop.
+- Subir la rama al repositorio remoto --> git push -u origin develop
+- Cuando se trabajó en local, crear la rama de feacture para revisión --> git checkout -b feacture/rama
+- Subir a repositorio remoto git push -u origin feacture/rama
+- Subir cambios git add .  /   git commit -m "Titulo del commit"     / git push
+- en caso de que no se agrego la rapa feacture: git push --set-upstream origin feacture/anotaciones
