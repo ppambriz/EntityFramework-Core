@@ -1,0 +1,42 @@
+﻿@model RelacionesConEFCore.Models.PerfilUsuario
+
+@{
+    ViewData["Title"] = "Editar Perfil de Usuario";
+}
+
+<h2 class="mb-4">Editar Perfil de Usuario</h2>
+
+<form asp-action="Editar" method="POST" class="mt-3">
+
+    <input type="hidden" asp-for="UsuarioId" />
+
+    <!-- Aquí se muestran los errores de validación generales y de propiedades -->
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Usuario.Nombre" class="form-label"></label>
+        <input asp-for="Usuario.Nombre" class="form-control" readonly/>       
+    </div>
+
+
+    <div class="mb-3">
+        <label asp-for="Biografia" class="form-label"></label>
+        <input asp-for="Biografia" class="form-control" placeholder="Ingresa la Biografía" />
+        <span asp-validation-for="Biografia" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FotoUrl" class="form-label"></label>
+        <input asp-for="FotoUrl" class="form-control" placeholder="Ingresa la Url de la Foto" />
+        <span asp-validation-for="FotoUrl" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+@{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

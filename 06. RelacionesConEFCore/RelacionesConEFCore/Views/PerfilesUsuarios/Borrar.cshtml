@@ -1,0 +1,23 @@
+﻿@model RelacionesConEFCore.Models.PerfilUsuario
+
+@{
+    ViewData["Title"] = "Borrar Perfil de Usuario";
+}
+
+
+<h2 class="mb-4">¿Borrar Perfil de Usuario?</h2>
+
+<div class="alert alert-warning">
+    <ul>
+        <li><strong>@Model.Usuario?.Nombre</strong></li>
+        <li><strong>@Model.Usuario?.Email</strong></li>
+        <li><strong>@Model.Biografia</strong></li>
+        <li><strong>@Model.FotoUrl</strong></li>
+    </ul>
+</div>
+
+<form asp-action="Borrar">
+    <input type="hidden" asp-for="UsuarioId" />
+    <button type="submit" class="btn  btn-danger">Borrar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

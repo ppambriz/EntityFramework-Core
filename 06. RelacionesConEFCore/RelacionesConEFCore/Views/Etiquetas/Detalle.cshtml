@@ -1,0 +1,42 @@
+﻿@model RelacionesConEFCore.Models.Etiqueta
+
+@{
+    ViewData["Title"] = "Detalle de Etiqueta";
+}
+
+<h1 class="mb-4">Detalle de Etiqueta</h1>
+
+
+<div class="card">
+    <div class="card-body">
+
+        <dl class="row">
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">@Model.Id</dd>
+
+            <dt class="col-sm-3">Nombre</dt>
+            <dd class="col-sm-9">@Model.Nombre</dd>
+        </dl>
+     
+
+        <h5 class="mt-4">Artículos relacionados</h5>
+        @if (Model.Articulos != null && Model.Articulos.Any())
+        {
+            <ul>
+                @foreach (var articulo in Model.Articulos)
+                {
+                    <li>
+                        <strong>@articulo.Titulo</strong>
+                        (ID: @articulo.Id)
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No hay artículos relacionados en esta etiqueta.</p>
+        }
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Volver</a>

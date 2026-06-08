@@ -1,0 +1,19 @@
+﻿@model RelacionesConEFCore.Models.Etiqueta
+
+@{
+    ViewData["Title"] = "Borrar Etiqueta";
+}
+
+
+<h2 class="mb-4">Borrar Etiqueta</h2>
+
+<div class="alert alert-warning">
+    <p>¿Está seguro que desea eliminar esta etiqueta?</p>
+    <strong>@Model.Nombre</strong>
+</div>
+
+<form asp-action="Borrar" method="POST">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn  btn-danger">Sí, borrar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

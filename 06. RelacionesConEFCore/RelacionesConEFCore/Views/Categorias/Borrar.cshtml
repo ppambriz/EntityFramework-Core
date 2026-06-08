@@ -1,0 +1,18 @@
+﻿@model RelacionesConEFCore.Models.Categoria
+
+@{
+    ViewData["Title"] = "Borrar Categoría";
+}
+
+
+<h2 class="mb-4">¿Borrar Categoría?</h2>
+
+<div class="alert alert-warning">
+    <strong>@Model.Nombre</strong>
+</div>
+
+<form asp-action="Borrar">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn  btn-danger">Borrar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

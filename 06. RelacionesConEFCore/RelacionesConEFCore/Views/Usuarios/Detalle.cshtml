@@ -1,0 +1,52 @@
+﻿@model RelacionesConEFCore.Models.Usuario
+
+@{
+    ViewData["Title"] = "Detalle de Usuario";
+}
+
+<h1 class="mb-4">Detalle de Usuario</h1>
+
+
+<div class="card">
+    <div class="card-body">
+        <p><strong>ID:</strong> @Model.Id</p>
+        <h4 class="card-title">@Model.Nombre</h4>
+        <h4 class="card-title">@Model.Email</h4>
+        
+
+        <h5 class="mt-3">Perfil</h5>
+
+        @if (Model.Perfil != null)
+        {
+            <ul>                
+                <li><strong>Biografía: </strong> @Model.Perfil.Biografia</li>
+                <li><strong>Foto: </strong> @Model.Perfil.FotoUrl</li>
+            </ul>
+        }
+        else
+        {
+            <p class="text-muted">Este usuario no tiene un perfil asociado.</p>
+        }
+
+        <h5 class="mt-3">Comentarios</h5>
+        @if (Model.Comentarios != null && Model.Comentarios.Any())
+        {
+            <ul class="list-group">
+                @foreach (var comentario in Model.Comentarios)
+                {
+                    <li class="list-group-item">
+                        <strong>@comentario.Texto</strong>
+                        <br />
+                        <span class="text-muted">Artículo ID: @comentario.ArticuloId</span>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="text-muted">Este usuario no ha hecho comentarios.</p>
+        }
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Volver</a>

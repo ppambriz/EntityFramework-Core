@@ -1,0 +1,34 @@
+﻿@model RelacionesConEFCore.Models.Comentario
+
+@{
+    ViewData["Title"] = "Detalle de Comentario";
+}
+
+<h1 class="mb-4">Detalle de Comentario</h1>
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-body">
+            <h5 class="card-title">Comentario #@Model.Id</h5>
+            <p><strong>Texto:</strong> @Model.Texto</p>
+
+            <p>
+                <strong>Usuario:</strong>
+                @(Model.Usuario != null ? Model.Usuario.Nombre : "No asignado")
+            </p>
+
+            <p>
+                <strong>Artículo:</strong>
+                @(Model.Articulo != null ? Model.Articulo.Titulo : "No asignado")
+            </p>
+
+            <p>
+                <strong>Aprobado:</strong>
+                @(Model.Aprobado ? "Sí" : "No")
+            </p>
+        </div>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Volver</a>
