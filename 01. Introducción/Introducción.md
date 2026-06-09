@@ -102,5 +102,82 @@ Console.WriteLine($"{p.Nombre"} - ${p.Precio});
 
 
 
+#### **Representación de una consulta OMR en EF**
+var productosCaros = context.Productos
+                            .where(p => p.Precio > 1000)
+                            .OrderBy(p => p.Nombre)
+                            .ToList();
 
 
+
+### **ARQUITECTURA DE EF CORE**
+
+
+**Cómo funciona EF Core internamente**
+
+- **Modelo (Clases C#)** --> Representan tus tablas y campos.
+- **DbContext** --> Clase puente entre tu aplicación y la base de datos.
+- **Proveedores de bases de datos** --> Cada motor usa un provider especifico (SQL Server, MySQL, etc.).
+- **Base de datos** --> EF Core traduce tus operaciones a SQL nativo.
+
+
+Ejemplo:
+
+public class AppDbContext : DbContext
+{
+    public DbSet<Producto> Productos { get; set; }
+}
+
+
+
+
+
+
+
+
+
+
+### **Code First**
+Se refiere a crear primero el código en C# y a partir de este cerar la base de datos. 
+
+
+
+**Flujo básico**
+- definir modelos: crear clases C# que representen las tablas.
+- Configurar DbContext: es el puente entre tu app y la base de datos.
+- Crear migraciones: EF Core genera isntrucfciones SQL para crear la base de datos.
+- Actualziar la base de datos: las migraciones se aplican y la base de datos se construye.
+
+
+**Ejecutar migraciones**
+dotnet ef migrations add Inicial --> agregar el nombre en referencia a lo que se esta realizando.
+dotnet ef database update --> para que se apliquen los canmbios.
+
+Todo esto se realza en consola.
+
+
+
+
+
+
+
+### **Database First**
+Se refiere a cerar el código a partir de una base de datos ya existente, aplicando un comando en la ocnsola se ceran las clases/ modelos.
+
+
+dotnet ef dbcontext scaffold
+"Server=.:Database=MiDb;Trusted_Connection=True;"
+Microsoft.EntityFrameworkCore.SqlServer
+
+
+Este comando escanea la base de datos y genera el modelo y el conetxto en tu proyecto.
+
+
+**Flujo básico**
+
+
+Cómo funciona Database First:
+- Base de datos existente: ya tiene tablas y relaciones ceradas.
+- Scaffolding: EF Core genera el codigo automáticamente.
+- DbContext generado: contiene las configuraciones y conexiones.
+- Uso directo: empiezas a hacer consultas y operaciones CRUD.
