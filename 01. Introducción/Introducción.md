@@ -166,7 +166,7 @@ Se refiere a cerar el código a partir de una base de datos ya existente, aplica
 
 
 dotnet ef dbcontext scaffold
-"Server=.:Database=MiDb;Trusted_Connection=True;"
+"Server=.:Database=MiDb;TrustServerCertificate=True;"
 Microsoft.EntityFrameworkCore.SqlServer
 
 
@@ -186,7 +186,7 @@ Cómo funciona Database First:
 
 #### **Crear un proyecto MVC (Modelo Vista Controlador)**
 
-En VS Conde: dotnet new mvc -n NombreDelProyecto
+En VS Code: dotnet new mvc -n NombreDelProyecto
 Instalar paquetes: 
     - dotnet add package Microsoft.EntityFrameworkCore -->Núcleo EF Core
     - dotnet add package Microsoft.EntityFrameworkCore.SqlServer --> Proveedor de base de datos
@@ -214,7 +214,7 @@ public class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer("Server=.;Database=MiBD;Trusted_Connection=True;");
+        options.UseSqlServer("Server=.;Database=MiBD;TrustServerCertificate=True;");
     }
 }
 
@@ -249,7 +249,14 @@ public class AppDbContext : DbContext
 ### **Crear el servicio del DbContext**
 1. En program.cs agregar el builder: builder.Services.AddDbContext<CEFCore.Data.ApplicationDbContext>();
 2. Como en la ruta que se agregó en el builder hay una carpeta llamada Data y una clase llamada Application DbContext, los agregaremos al proyecto.
-3. Al crear la clase ApplicationDbContext (la cual puede llamarse como sea) debemos heredarla de la clase DbContext. Pedirá importar la librería Microsoft EF Core (using Microsoft.EntityFrameworkCore;).
+3. Al crear la clase ApplicationDbContext (la cual puede llamarse como sea) debemos heredarla de la clase DbContext. Pedirá importar la librería Microsoft EF Core (using Microsoft.EntityFrameworkCore;). No olvidar agregar el constructor con options. public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options){}
 4. Ahora en el builder podemos importar con using la ruta hacia la carperta datos y solo agregar el nombre d ela clase: builder.Services.AddDbContext<ApplicationDbContext>();
 5. Ahora hay que agregarle al builder la cadena de conexión: 
-    builder.Services.AddDbContext<CEFCore.Data.ApplicationDbContext>(options => options.UseSqlServvve(builder.Configuration.GetConnectionString("ConexionSQL")));
+    builder.Services.AddDbContext<CEFCore.Data.ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSQL")));
+
+
+Apartir de aquí ya se puede hacer una migración ya que ya existe una conexión en el dbContext. Como no hay aun modelos ni clases que refieran a tablas. Sólos e creará la base de datos que se indicó en el Connectionstring.
+
+
+En consola: dotnet ef migrations add InitialCreate --- dotnet ef database update
