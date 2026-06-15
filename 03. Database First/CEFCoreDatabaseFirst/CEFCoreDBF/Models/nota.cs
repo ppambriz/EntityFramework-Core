@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CEFCoreDBF.Models;
 
+[Table("nota")]
 public partial class nota
 {
     [Key]

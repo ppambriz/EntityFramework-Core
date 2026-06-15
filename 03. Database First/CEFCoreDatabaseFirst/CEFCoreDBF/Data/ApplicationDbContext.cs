@@ -13,11 +13,12 @@ public partial class ApplicationDbContext : DbContext
     {
     }
 
-    public virtual DbSet<categoria> categoria { get; set; }
+    public virtual DbSet<categoria> categorias { get; set; }
 
     public virtual DbSet<nota> notas { get; set; }
 
     public virtual DbSet<usuario> usuarios { get; set; }
+    public virtual DbSet<etiqueta> etiquetas { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +27,7 @@ public partial class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<categoria>(entity =>
         {
+            entity.ToTable("categoria");
             entity.Property(e => e.activo).HasDefaultValue(true, "DF_categoria_activo");
         });
 

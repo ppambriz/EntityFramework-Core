@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CEFCoreDBF.Models;
 
+[Table("categoria")]
 public partial class categoria
 {
     [Key]

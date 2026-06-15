@@ -1,8 +1,28 @@
-﻿@{
+﻿@*Se accede al modelo categoría *@
+@model IEnumerable<CEFCoreDBF.Models.categoria>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Activo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.idcategoria</td>
+                <td>@item.nombre</td>
+                <td>@item.descripcion</td>
+                <td>@item.activo</td>
+            </tr>
+        }
+    </tbody>
+</table>
