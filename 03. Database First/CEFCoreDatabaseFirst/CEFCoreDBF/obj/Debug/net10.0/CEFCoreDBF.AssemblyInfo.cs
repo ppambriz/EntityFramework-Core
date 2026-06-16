@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CEFCoreDBF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1218cf8233ef9cbe49e8e15beacf49cc12abbcd1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf684e5e3eb8f31e02077bd5812d913f81d55594")]
 [assembly: System.Reflection.AssemblyProductAttribute("CEFCoreDBF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CEFCoreDBF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
